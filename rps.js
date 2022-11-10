@@ -1,8 +1,3 @@
-const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
-const computerSelection = getComputerChoice();
-
-
-
 function getComputerChoice() {
     //randomly return Rock, Paper, or Scissors
     let randomNum = Math.floor(Math.random() * 100);
@@ -15,41 +10,6 @@ function getComputerChoice() {
         return "Scissors";
     }
 }
-
-
-
-//player enters choice DONE
-// computer enters random choice DONE
-// player choice is ranked against computer's
-
-// Winner variable to determine if player won or not or if comp won or not- variable
-// if player wins You win! x beats y
-// if they lose You lose! y beats x
-// else if both player and comp match: Tied! Try again
-//          player puts in (case),
-//                      switch! case rock { 
-//                       if (comps choice is paper) return compWins and !playerWins;   
-//                      else if (comps choice is scissors) return !compWins and playerWins;
-//                             else return falsy for both
-// }
-//                              case paper { run same to determine }
-//                              case scissors {stuff}
-//                              all return truthy values to playRound()
-// determine who wins
-// output the winner
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -87,26 +47,48 @@ function playRound(playerSelection, computerSelection) {
         break;
     }
 
-
-
     // Output the winner and why
     if (playerWins && !compWins) {
         return "You Win! " + playerSelection + " beats " + computerSelection;
     } else if (!playerWins && compWins) {
         return "You Lose! " + computerSelection + " beats " + playerSelection;
     } else {
-        return "Tied! Try again :|"
+        return "Tied! Try again :|";
     }
   }
-   
 
-console.log(playRound(playerSelection, computerSelection));
 
-// Write a NEW function called game(). Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
+function game() {
+    let playerScore = 0;
+    let compScore = 0;
+    let winner = "Player";
 
-// write the function
-// ask the player for the choice
-// throw the choice into playRound()
-// determine a score for both the player and the comp
-// if player wins add a point and vice versa for comp
-// once done determine who is overall winner
+    //loop game 5 times and ask each time and determine winner
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
+        const computerSelection = getComputerChoice();
+
+        let match = playRound(playerSelection, computerSelection);
+        console.log(match);
+
+        if (match.match("Win")) {
+            playerScore++;
+        } else if (match.match("Lose")) {
+            compScore++;
+        } else {}
+
+    }
+
+    console.log("Computer: " + compScore + " Player: " + playerScore);
+
+    if (playerScore > compScore) {
+        console.log("And the winner of the match goes to: " + winner);
+    } else if (compScore > playerScore) {
+        winner = "Computer";
+        console.log("And the winner of the match goes to: " + winner);
+    } else {
+        console.log("Looks like a tie, boo");
+    }
+}
+
+game();
