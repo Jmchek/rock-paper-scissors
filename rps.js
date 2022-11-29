@@ -64,7 +64,7 @@ function game() {
     let winner = "Player";
 
     //loop game 5 times and ask each time and determine winner
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
         const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
         const computerSelection = getComputerChoice();
 
@@ -77,7 +77,7 @@ function game() {
             compScore++;
         } else {}
 
-    }
+    // }
 
     console.log("Computer: " + compScore + " Player: " + playerScore);
 
