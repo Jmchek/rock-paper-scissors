@@ -62,20 +62,33 @@ function game() {
     let playerScore = 0;
     let compScore = 0;
     let winner = "Player";
+    //const computerSelection = getComputerChoice();
+    let playerSelection;
+
+    //find player's choice through buttons
+    const btnPlayer = document.querySelectorAll('button');
+    btnPlayer.forEach((button) => {
+
+        // and for each one we add a 'click' listener
+        button.addEventListener('click', () => {
+          playRound(button.textContent, getComputerChoice());
+        });
+      });
 
     //loop game 5 times and ask each time and determine winner
+    // beginning portion refactored for UI
     // for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
-        const computerSelection = getComputerChoice();
+        //const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
+        //const computerSelection = getComputerChoice();
 
-        let match = playRound(playerSelection, computerSelection);
-        console.log(match);
+        // let match = playRound(playerSelection, computerSelection);
+        // console.log(match);
 
-        if (match.match("Win")) {
-            playerScore++;
-        } else if (match.match("Lose")) {
-            compScore++;
-        } else {}
+        // if (match.match("Win")) {
+        //     playerScore++;
+        // } else if (match.match("Lose")) {
+        //     compScore++;
+        // } else {}
 
     // }
 
