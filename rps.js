@@ -15,7 +15,6 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerChoice = playerSelection.toLowerCase();
-    console.log("Computer's choice is " + computerSelection + " and the player chose: " + playerSelection);
     let playerWins = false;
     let compWins = false;
 
@@ -62,7 +61,6 @@ function game() {
     let playerScore = 0;
     let compScore = 0;
     let winner = "Player";
-    //const computerSelection = getComputerChoice();
     let playerSelection = "";
     let match;
     
@@ -79,6 +77,7 @@ function game() {
     para.textContent = "Computer: " + compScore + " Player: " + playerScore;
 
     div.appendChild(outcomePara);
+    outcomePara.textContent = "";
 
     //find player's choice through buttons
     const btnPlayer = document.querySelectorAll('button');
@@ -86,19 +85,18 @@ function game() {
 
         // and for each one we add a 'click' listener
         button.addEventListener('click', () => {
-          match = playRound(button.textContent, getComputerChoice());
-        //   console.log(button.textContent);
-        //   console.log(typeof match);
-          console.log(match.search("Win"));
-          console.log(match.search("Lose"));
-        //   console.log(playRound(button.textContent, getComputerChoice()));
+          match = playRound(playerSelection = button.textContent, computerSelection = getComputerChoice());
           if (match.search("Win") > 0) {
                 playerScore++;
                 para.textContent = "Computer: " + compScore + " Player: " + playerScore;
+                outcomePara.textContent = "Computer's choice is " + computerSelection + " and the player chose: " + playerSelection;
             } else if (match.search("Lose") > 0){
                 compScore++;
                 para.textContent = "Computer: " + compScore + " Player: " + playerScore;
-            } 
+                outcomePara.textContent = "Computer's choice is " + computerSelection + " and the player chose: " + playerSelection;
+            } else {
+                outcomePara.textContent = "Computer's choice is " + computerSelection + " and the player chose: " + playerSelection + ". A tie!";
+            }
         });
       });
 
@@ -118,13 +116,6 @@ function game() {
         // } else {}
 
     // }
-    
-    
-    
-    
-
-
-    // console.log("Computer: " + compScore + " Player: " + playerScore);
 
     // if (playerScore > compScore) {
     //     outcomePara.textContent = "And the winner of the match goes to: " + winner;
