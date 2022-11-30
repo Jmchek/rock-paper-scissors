@@ -63,7 +63,22 @@ function game() {
     let compScore = 0;
     let winner = "Player";
     //const computerSelection = getComputerChoice();
-    let playerSelection;
+    let playerSelection = "";
+    let match;
+    
+    //dom vars here
+    const body = document.querySelector('body');
+    const div = document.createElement('div');
+    const para = document.createElement('p');
+    const outcomePara = document.createElement('p');
+    
+
+    body.appendChild(div);
+
+    div.appendChild(para);
+    para.textContent = "Computer: " + compScore + " Player: " + playerScore;
+
+    div.appendChild(outcomePara);
 
     //find player's choice through buttons
     const btnPlayer = document.querySelectorAll('button');
@@ -71,7 +86,19 @@ function game() {
 
         // and for each one we add a 'click' listener
         button.addEventListener('click', () => {
-          playRound(button.textContent, getComputerChoice());
+          match = playRound(button.textContent, getComputerChoice());
+        //   console.log(button.textContent);
+        //   console.log(typeof match);
+          console.log(match.search("Win"));
+          console.log(match.search("Lose"));
+        //   console.log(playRound(button.textContent, getComputerChoice()));
+          if (match.search("Win") > 0) {
+                playerScore++;
+                para.textContent = "Computer: " + compScore + " Player: " + playerScore;
+            } else if (match.search("Lose") > 0){
+                compScore++;
+                para.textContent = "Computer: " + compScore + " Player: " + playerScore;
+            } 
         });
       });
 
@@ -91,17 +118,24 @@ function game() {
         // } else {}
 
     // }
+    
+    
+    
+    
 
-    console.log("Computer: " + compScore + " Player: " + playerScore);
 
-    if (playerScore > compScore) {
-        console.log("And the winner of the match goes to: " + winner);
-    } else if (compScore > playerScore) {
-        winner = "Computer";
-        console.log("And the winner of the match goes to: " + winner);
-    } else {
-        console.log("Looks like a tie, boo");
-    }
+    // console.log("Computer: " + compScore + " Player: " + playerScore);
+
+    // if (playerScore > compScore) {
+    //     outcomePara.textContent = "And the winner of the match goes to: " + winner;
+    // } else if (compScore > playerScore) {
+    //     winner = "Computer";
+    //     outcomePara.textContent = "And the winner of the match goes to: " + winner;
+    // } else {
+    //     outcomePara.textContent = "Looks like a tie, boo";
+    // }
+
+    
 }
 
 game();
