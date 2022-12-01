@@ -69,15 +69,21 @@ function game() {
     const div = document.createElement('div');
     const para = document.createElement('p');
     const outcomePara = document.createElement('p');
-    
+    const winnerWinner = document.createElement('p');
 
     body.appendChild(div);
 
+    //scoreboard
     div.appendChild(para);
     para.textContent = "Computer: " + compScore + " Player: " + playerScore;
 
+    //match outcome
     div.appendChild(outcomePara);
     outcomePara.textContent = "";
+
+    //final score
+    div.appendChild(winnerWinner);
+    winnerWinner.textContent = "";
 
     //find player's choice through buttons
     const btnPlayer = document.querySelectorAll('button');
@@ -97,34 +103,15 @@ function game() {
             } else {
                 outcomePara.textContent = "Computer's choice is " + computerSelection + " and the player chose: " + playerSelection + ". A tie!";
             }
+            //outcome
+            if (playerScore == 5) {
+                winnerWinner.textContent = "And the winner of the match goes to: " + winner + "!";
+            } else if (compScore == 5) {
+                winner = "Computer";
+                winnerWinner.textContent += "And the winner of the match goes to: " + winner + "!";
+            }
         });
       });
-
-    //loop game 5 times and ask each time and determine winner
-    // beginning portion refactored for UI
-    // for (let i = 0; i < 5; i++) {
-        //const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
-        //const computerSelection = getComputerChoice();
-
-        // let match = playRound(playerSelection, computerSelection);
-        // console.log(match);
-
-        // if (match.match("Win")) {
-        //     playerScore++;
-        // } else if (match.match("Lose")) {
-        //     compScore++;
-        // } else {}
-
-    // }
-
-    // if (playerScore > compScore) {
-    //     outcomePara.textContent = "And the winner of the match goes to: " + winner;
-    // } else if (compScore > playerScore) {
-    //     winner = "Computer";
-    //     outcomePara.textContent = "And the winner of the match goes to: " + winner;
-    // } else {
-    //     outcomePara.textContent = "Looks like a tie, boo";
-    // }
 
     
 }
